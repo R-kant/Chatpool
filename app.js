@@ -76,9 +76,7 @@ function isLoggedin(req,res,next){
 	}
 	res.redirect('/login');
 }
-var server=app.listen(3000,function(){
-	console.log('listening on port 3000');
-});
+var server=app.listen(process.env.PORT,process.env.IP);
 
 var io = socket(server);
 var users=[];
