@@ -1,0 +1,72 @@
+<%include ./partials/header.ejs%>
+
+<nav class="red darken-1" >
+	<div class="nav-wrapper">
+		<div class="container">
+			<a href="/" class="brand-logo center">Chat Pool</a>
+			<a href="#" class="button-collapse" data-activates="mobile-nav">
+				<i class="material-icons">menu</i>
+			</a>
+			<ul class="right hide-on-med-and-down"> 
+				<li>
+					<a href="/">Home</a>
+				</li>
+				<li>
+					<a href="/login">LogIn</a>
+				</li>
+				<li>
+					<a href="/register">SignUp</a>
+				</li>
+			</ul>
+
+			
+			
+		</div>
+
+	</div>
+</nav>
+<ul class="side-nav" id="mobile-nav">
+				<li>
+					<a href="/">Home</a>
+				</li>
+				<li>
+					<a href="/login">LogIn</a>
+				</li>
+				<li>
+					<a href="/register">SignUp</a>
+				</li>
+</ul>
+<div class="container ">
+
+	<div class="row ">
+		
+		<div class="col m6 s12 offset-m3 white" id="loginBox">
+			<h4 class="center-align white-text red myoption" >SignUp</h4>
+			<div class="container ">
+						
+					<div class="center-align"><i class="material-icons large center-align grey-text text-darken-1">person</i></div>
+
+
+					<form action="/register" method="POST">
+						<div class="input-field ">
+							<input type="text" id="name" name="username">
+							<label for="name">Username</label>
+						</div>
+						<div class="input-field ">
+							<input type="password" name="password" id="password">
+							<label for="password">Password</label>
+							
+						</div>
+						<div class="input-field center-align">
+								
+							<button class="btn center-align waves-effect waves-light red "><i class="material-icons left">send</i>Submit</button>
+						</div>
+					</form>
+			</div>
+		</div>
+		
+	</div>
+</div>
+
+
+<%include ./partials/footer.ejs%>

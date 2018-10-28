@@ -1,0 +1,59 @@
+<%include ./partials/header.ejs%>
+
+<nav class="red">
+	<div class="nav-wrapper">
+		<div class="container">
+			<a href="/" class="brand-logo center">Chat Pool</a>
+			<a href="#" class="button-collapse" data-activates="mobile-nav">
+				<i class="material-icons">menu</i>
+			</a>
+			<ul class="right hide-on-med-and-down"> 
+				<li>
+					<a href="/logout" class="right-align">LogOut</a>
+				</li>
+				
+			</ul>
+
+			
+			
+		</div>
+
+	</div>
+</nav>
+<ul class="side-nav" id="mobile-nav">
+				<li>
+					<a href="/logout" >LogOut</a>
+				</li>
+				
+</ul>
+<h1 id="invisible"><%=handle%></h1>
+	<div class="container ">
+		
+		<div class="row" id="check">
+			
+			<div class="col m10 offset-m1 s-12" id="chatContainer">
+				<div class="red white-text" id="headDiv">
+					<h4 class="center-align" id="header">Welcome to Chat Pool</h4>
+
+					<p id="noP" class="center-align">There are 0 participants</p>
+				</div>
+				<div id="chat_box" class="white"></div>	
+				<div id="messageBox">
+					<input type="text" name="message" id="message" class="browser-default" placeholder="Say Hi !">
+					<div class="center" id="btnContainer">
+						<button class="btn-floating red btn-large" id="sendBtn"><i class="material-icons">send</i></button>
+					</div>
+				</div>
+					
+				
+				
+			</div>
+		</div>
+		
+
+	</div>
+
+
+<script type="text/javascript" src="/js/chat.js"></script>
+<%include ./partials/footer.ejs%>
+
