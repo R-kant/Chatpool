@@ -1,6 +1,7 @@
 <%include ./partials/header.ejs%>
 
-<nav class="red">
+<div id="particles-js" class="hide-on-med-and-down green darken-2" ></div>
+<nav class="red" style="z-index:5;position: relative; ">
 	<div class="nav-wrapper">
 		<div class="container">
 			<a href="/" class="brand-logo center">Chat Pool</a>
@@ -13,9 +14,7 @@
 				</li>
 				
 			</ul>
-
-			
-			
+	
 		</div>
 
 	</div>
@@ -27,13 +26,13 @@
 				
 </ul>
 <h1 id="invisible"><%=handle%></h1>
-	<div class="container ">
+	<div class="container " style="z-index: 1;position: relative;">
 		
 		<div class="row" id="check">
 			
 			<div class="col m10 offset-m1 s-12" id="chatContainer">
 				<div class="red white-text" id="headDiv">
-					<h4 class="center-align" id="header">Welcome to Chat Pool</h4>
+					<h4 class="center-align" id="header">Welcome <%=handle%> to Chat Pool</h4>
 
 					<p id="noP" class="center-align">There are 0 participants</p>
 				</div>
@@ -53,7 +52,8 @@
 
 	</div>
 
-
+<script src="/js/particles.js"></script>
+<script src="/js/app.js"></script>
 <script type="text/javascript" src="/js/chat.js"></script>
 <%include ./partials/footer.ejs%>
 

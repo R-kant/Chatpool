@@ -8,9 +8,7 @@
 				<i class="material-icons">menu</i>
 			</a>
 			<ul class="right hide-on-med-and-down"> 
-				<li>
-					<a href="/">Home</a>
-				</li>
+				
 				<li>
 					<a href="/login">LogIn</a>
 				</li>
@@ -26,9 +24,7 @@
 	</div>
 </nav>
 <ul class="side-nav" id="mobile-nav">
-				<li>
-					<a href="/">Home</a>
-				</li>
+				
 				<li>
 					<a href="/login">LogIn</a>
 				</li>
@@ -36,20 +32,47 @@
 					<a href="/register">SignUp</a>
 				</li>
 </ul>
+
 <div class="container ">
 
 	<div class="row ">
 		
-		<div class="col m6 s12 offset-m3 white" id="loginBox">
-			<h4 class="center-align white-text red myoption" >Login</h4>
-			<div class="container ">
+
+<div class="col s12 m6 offset-m3">
+	<% if(error && error.length >0){ %>
+    <div id="tost2" class="card-panel tst red white-text">
+      <%= error %>
+    </div>
+	     <%}%>
+
+   <% if(success && success.length >0){ %>
+    <div id="tost1" class="card-panel tst green white-text">
+      <%= success %>
+    </div>
+    <%}%>
+ </div>
+		<div class="col m6 s12 offset-m3 " id="loginBox">
+			<div class="card red ">
+				<div class="card-image">
+					<img class="activator" src="https://www.thevateam.london/wp-content/uploads/2018/08/web-chat.jpg">
+				</div>
+				<div class="card-content">
+					<span class="card-title white-text">Start a conversation !</span>
+					<p class="activator black-text">
 						
-					<div class="center-align"><i class="material-icons large center-align grey-text text-darken-1">person</i></div>
+						<button class="activator btn waves-light waves-effect blue ">Log in here <i class="material-icons right">exit_to_app</i></button>
+					</p>
+				</div>
 
-
+				<div class="card-reveal">
+					<span class="card-title ">
+						Log In
+						<i class="material-icons">close</i>
+					</span>
 					<form action="/login" method="POST">
 						<div class="input-field ">
 							<input type="text" id="name" name="username">
+
 							<label for="name">Username</label>
 						</div>
 						<div class="input-field ">
@@ -59,11 +82,14 @@
 						</div>
 						<div class="input-field center-align">
 								
-							<button class="btn center-align waves-effect waves-light red "><i class="material-icons left">send</i>Submit</button>
+							<button class="btn blue center-align waves-effect waves-light red "><i class="material-icons left">send</i>Submit</button>
 						</div>
 					</form>
+				</div>
+				
 			</div>
 		</div>
+
 		
 	</div>
 </div>

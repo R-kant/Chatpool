@@ -1,22 +1,28 @@
-const express= require('express'),
- bodyParser=require('body-parser'),
- mongoose = require('mongoose'),
- User     = require('./models/user'),
- passport = require('passport'),
- localStratergy=require('passport-local'),
- passportlm= require('passport-local-mongoose'),
- socket= require('socket.io');
-
+const express        = require('express'),
+      bodyParser     = require('body-parser'),
+      mongoose       = require('mongoose'),
+      User           = require('./models/user'),
+      passport       = require('passport'),
+      localStratergy = require('passport-local'),
+      passportlm     = require('passport-local-mongoose'),
+      socket         = require('socket.io');
+      flash          = require('connect-flash');
 
 mongoose.connect("mongodb://R:991155@cluster0-shard-00-00-jm0pv.mongodb.net:27017,cluster0-shard-00-01-jm0pv.mongodb.net:27017,cluster0-shard-00-02-jm0pv.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true", { useNewUrlParser: true });
 var app= express();
 app.use(express.static("public"));
 var handleName ;
+app.use(flash());
 app.use(require('express-session')({
 	secret: "Ravikant Mishra",
 	resave:false,
 	saveUninitialized:false
 }));
+app.use(function(req, res, next) {
+  res.locals.error = req.flash("error");
+  res.locals.success = req.flash("success");
+  next();
+});
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(bodyParser.urlencoded({extended:true}));
@@ -40,17 +46,21 @@ app.get('/register',function(req,res){
 });
 
 app.post('/register',function(req,res){
-
+	
 	User.register(new User({username:req.body.username}),req.body.password,function(err,user){
 		if(err){
+			req.flash("error",err.message);
 			console.log(err);
+			res.redirect('/register');
 		}
 		else
 		{
-			
+			req.flash("success","Signed up Successfully");
 			res.redirect('/login');
 		}
 	});
+
+
 });
 
 app.get("/login",function(req,res){
@@ -65,7 +75,8 @@ app.post('/login',passport.authenticate('local',{
 
 app.get('/logout',function(req,res){
 	req.logout();
-	res.redirect('/');
+	req.flash('success',"Successfully Logged out !")
+	res.redirect('/login');
 });
 
 
@@ -76,7 +87,7 @@ function isLoggedin(req,res,next){
 	}
 	res.redirect('/login');
 }
-var server=app.listen(process.env.PORT,process.env.IP);
+var server=app.listen(3000);
 
 var io = socket(server);
 var users=[];
@@ -102,7 +113,7 @@ io.sockets.on('connection',function(socket){
 		socket.broadcast.emit('play');
 	});
 	socket.on('disconnect',function(){
-		//console.log('server side disconnect');
+		
 		cnt--;
 		var data={
 			disconnectedUser:null,
@@ -112,7 +123,7 @@ io.sockets.on('connection',function(socket){
 			if(user.id==socket.id)
 			{
 					data.disconnectedUser=user.userHandle;
-				//console.log(user.userHandle);	
+			
 			}
 		});
 		

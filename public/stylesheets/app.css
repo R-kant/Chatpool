@@ -3,6 +3,28 @@
 	max-height: 300px;
 	overflow-y: scroll;
 }
+.side-nav{
+	width:60% !important;
+}
+canvas[resize] {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+}
+.particles-js-canvas-el{
+	position: absolute;
+}
+#particles-js{
+	position: absolute;
+	z-index: 0 !important;
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  background-image: url('');
+  background-size: cover;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+}
 .messages{
 	padding:10px;
 	margin:10px;
@@ -89,4 +111,39 @@ body{
 #chat_box::-webkit-scrollbar-thumb
 {
 	background-color: #000000;
+}
+#signUpContainer .input-field input[type=text]:focus + label,
+#signUpContainer input[type=password]:focus + label {
+    color: #fff !important;
+}
+
+#signUpContainer .input-field input[type=text]:focus,
+#signUpContainer input[type=password]:focus {
+	border-bottom: 1px solid #fff !important;;
+	box-shadow: 0 1px 0 0 #fff !important;;
+}
+.card-reveal .card-title{
+	margin-bottom: 40px;
+}
+
+.primary-overlay {
+	background: rgba(100,100,100,0.3);
+	/*position: absolute;*/
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	box-sizing: border-box;
+	padding: 30px;
+	margin-top: 8rem;
+	border-radius: 50px;
+}
+
+.banda {
+	width: 70px;
+	height: 70px;
+}
+#signUpContainer{
+	margin-top: 60px;
 }

@@ -1,72 +1,118 @@
 <%include ./partials/header.ejs%>
 
-<nav class="red darken-1" >
-	<div class="nav-wrapper">
-		<div class="container">
-			<a href="/" class="brand-logo center">Chat Pool</a>
-			<a href="#" class="button-collapse" data-activates="mobile-nav">
-				<i class="material-icons">menu</i>
-			</a>
-			<ul class="right hide-on-med-and-down"> 
-				<li>
-					<a href="/">Home</a>
-				</li>
-				<li>
-					<a href="/login">LogIn</a>
-				</li>
-				<li>
-					<a href="/register">SignUp</a>
-				</li>
-			</ul>
+<style type="text/css">
+body {
+	background: url("assets/background.jpg");
+	background-size: cover;
+	background-position: center;
+	min-height: 600px;
+	color: #fff;
+}
+</style>
+<audio id="nyan" src="http://dl.dropbox.com/u/31703/nyan.mp3" autoplay autobuffer preload=none loop style="display:none"></audio>
+<canvas id="canvas" class="hide-on-med-and-down" resize hidpi="off"></canvas>
+<div class="navbar-fixed">
+        <nav class="transparent z-depth-5">
+            <div class="nav-wrapper">
+                <div class="container">
+                    <a href="#home" class="brand-logo"><i class="large hide-on-med-and-down left material-icons">chat</i>Chat Pool</a>
+                    <a href="#" data-activates="mobile-nav" class="button-collapse">
+                        <i class="material-icons">menu</i>
+                    </a>
+                    <ul class="right hide-on-med-and-down">
+                        
+                        <li>
+                            <a href="/login">LogIn</a>
+                        </li>
+                        <li>
+                            <a href="/register">SignUp</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <ul class="side-nav" id="mobile-nav">
+        
+        <li>
+            <a href="/login">LogIn</a>
+        </li>
+        <li>
+            <a href="/register">SignUp</a>
+        </li>
+    </ul>
+<% if(error || success){ %>
+    <div class="container">
+        <div class="row">
+            
+        
+        <div class="col m6 s12">
+          <% if(error && error.length >0){ %>  
+            <div id="tost2" class="card-panel tst red white-text">
+              <%= error %>
+            </div>
+             <%}%>
 
-			
-			
-		</div>
+           <% if(success && success.length >0){ %>
+            <div id="tost1" class="card-panel tst green white-text">
+              <%= success %>
+            </div>
+            <%}%>
+            </div>
+        </div>
+    </div>
+<%}%>
+    <div class="container" id="signUpContainer">
 
-	</div>
-</nav>
-<ul class="side-nav" id="mobile-nav">
-				<li>
-					<a href="/">Home</a>
-				</li>
-				<li>
-					<a href="/login">LogIn</a>
-				</li>
-				<li>
-					<a href="/register">SignUp</a>
-				</li>
-</ul>
-<div class="container ">
+        <div class="row">
 
-	<div class="row ">
-		
-		<div class="col m6 s12 offset-m3 white" id="loginBox">
-			<h4 class="center-align white-text red myoption" >SignUp</h4>
-			<div class="container ">
-						
-					<div class="center-align"><i class="material-icons large center-align grey-text text-darken-1">person</i></div>
+            <div class="col m6 s12 offset-l7 offset-m6 transparent">
+                <div class="container primary-overlay">
+                            
+                        <div class="center"><img src="assets/banda.png" class="banda">
+                            <h4>SignUp</h4>
+                        </div>
 
 
-					<form action="/register" method="POST">
-						<div class="input-field ">
-							<input type="text" id="name" name="username">
-							<label for="name">Username</label>
-						</div>
-						<div class="input-field ">
-							<input type="password" name="password" id="password">
-							<label for="password">Password</label>
-							
-						</div>
-						<div class="input-field center-align">
-								
-							<button class="btn center-align waves-effect waves-light red "><i class="material-icons left">send</i>Submit</button>
-						</div>
-					</form>
-			</div>
-		</div>
-		
-	</div>
-</div>
+                        <form action="/register" method="POST">
+                            <div class="input-field ">
+                                <input type="text" id="username" name="username">
+                                <label for="username">Username</label>
+                            </div>
+                            <div class="input-field ">
+                                <input type="password" name="password" id="password">
+                                <label for="password">Password</label>
+                                
+                            </div>
+                            <div class="input-field ">
+                                <input type="password" name="cnfpassword" id="cnfpassword">
+                                <label for="cnfpassword">Confirm Password</label>
+                                
+                            </div>
+                            <div class="input-field center-align">
+                                    
+                                <button class="btn center-align waves-effect waves-darken red"><i class="material-icons left">send</i>Submit</button>
+                            </div>
+                        </form>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+<script type="text/javascript">
+  var password = document.getElementById("password")
+  , confirm_password = document.getElementById("cnfpassword");
 
+function validatePassword(){
+  if(password.value != confirm_password.value) {
+    confirm_password.setCustomValidity("Passwords Don't Match");
+  } else {
+    confirm_password.setCustomValidity('');
+  }
+}
 
+password.onchange = validatePassword;
+confirm_password.onkeyup = validatePassword;
+</script>
+<script type="text/paperscript" canvas="canvas" src="js/nyan.js"></script>
 <%include ./partials/footer.ejs%>
